@@ -35,7 +35,6 @@ print("Waktu\tKeuntungan TS\tKeuntungan BPI")
 for i in range(len(t)):
     print(f"{t[i]:.2f}\t{X[i]:.2f}\t\t{Y[i]:.2f}")
 
-
 # Plot hasilnya
 plt.figure(figsize=(10, 5))
 plt.plot(t, X, label='Indekos Tanjungsari')
@@ -46,41 +45,3 @@ plt.title('Grafik Keuntungan Terhadap Persaingan Usaha Indekos Tanjungsari denga
 plt.legend()
 plt.grid(True)
 plt.show()
-
-print(50*"=")
-# Temukan indeks yang paling dekat dengan t disekitar n
-t_target = 00
-index1 = (np.abs(t - t_target)).argmin()
-t_target = 10
-index2 = (np.abs(t - t_target)).argmin()
-t_target = 20
-index3 = (np.abs(t - t_target)).argmin()
-t_target = 30
-index4 = (np.abs(t - t_target)).argmin()
-t_target = 40
-index5 = (np.abs(t - t_target)).argmin()
-t_target6 = 50
-index6 = (np.abs(t - t_target6)).argmin()
-
-# Dapatkan hasil keuntungan ketika t = n
-keuntungan_TS1 = X[index1]
-keuntungan_BPI1 = Y[index1]
-keuntungan_TS2 = X[index2]
-keuntungan_BPI2 = Y[index2]
-keuntungan_TS3 = X[index3]
-keuntungan_BPI3= Y[index3]
-keuntungan_TS4 = X[index4]
-keuntungan_BPI4= Y[index4]
-keuntungan_TS5 = X[index5]
-keuntungan_BPI5= Y[index5]
-keuntungan_TS6 = X[index6]
-keuntungan_BPI6= Y[index6]
-
-# Cetak hasilnya
-print("Waktu\tKeuntungan TS\tKeuntungan BPI")
-print(f"{t[index1]:.0f}\t{keuntungan_TS1:.2f}\t\t{keuntungan_BPI1:.2f} ")
-print(f"{t[index2]:.0f}\t{keuntungan_TS2:.2f}\t\t{keuntungan_BPI2:.2f} ")
-print(f"{t[index3]:.0f}\t{keuntungan_TS3:.2f}\t\t{keuntungan_BPI3:.2f} ")
-print(f"{t[index4]:.0f}\t{keuntungan_TS4:.2f}\t\t{keuntungan_BPI4:.2f} ")
-print(f"{t[index5]:.0f}\t{keuntungan_TS5:.2f}\t\t{keuntungan_BPI5:.2f} ")
-print(f"{t[index6]:.0f}\t{keuntungan_TS6:.2f}\t\t{keuntungan_BPI6:.2f} ")
