@@ -11,7 +11,7 @@ alpha = 70  #juta # keuntungan maksimum indekos Tanjungsari
 beta = 102   #juta # keuntungan maksimum indekos BPI
 
 # Definisikan fungsi yang mendeskripsikan sistem ODE
-def keuntungan(y, t, r, a, s, b, alpha, beta):
+def lotka_volterra(y, t, r, a, s, b, alpha, beta):
     X, Y = y
     dydt = [r * X * (1 - (X/alpha)) - a * X * Y,
             s * Y * (1 - (Y/beta)) - b * Y * X]
@@ -21,18 +21,24 @@ def keuntungan(y, t, r, a, s, b, alpha, beta):
 y0 = [40, 70] #juta
 
 # Waktu di mana solusi harus dihitung
-t = np.linspace(0, 30, 500)
+t = np.linspace(0, 50, 500)
 
 # Panggil odeint untuk menyelesaikan sistem ODE
-sol = odeint(keuntungan, y0, t, args=(r, a, s, b, alpha, beta))
+sol = odeint(lotka_volterra, y0, t, args=(r, a, s, b, alpha, beta))
 
 # Ekstrak solusi untuk X dan Y
-X = sol[:, 0] # mengambil semua baris dari kolom pertama
-Y = sol[:, 1] # mengambil semua baris dari kolom kedua
+X = sol[:, 0]
+Y = sol[:, 1]
+
+# Cetak hasil angkanya
+print("Waktu\tKeuntungan TS\tKeuntungan BPI")
+for i in range(len(t)):
+    print(f"{t[i]:.2f}\t{X[i]:.2f}\t\t{Y[i]:.2f}")
+
 
 # Plot hasilnya
 plt.figure(figsize=(10, 5))
-plt.plot(t, X, label='Indekos Tanjung Sari')
+plt.plot(t, X, label='Indekos Tanjungsari')
 plt.plot(t, Y, label='Indekos BPI')
 plt.xlabel('Waktu dalam satuan tahun')
 plt.ylabel('Keuntungan dalam satuan juta')
@@ -47,15 +53,14 @@ t_target = 00
 index1 = (np.abs(t - t_target)).argmin()
 t_target = 10
 index2 = (np.abs(t - t_target)).argmin()
-t_target = 15
-index3 = (np.abs(t - t_target)).argmin()
 t_target = 20
+index3 = (np.abs(t - t_target)).argmin()
+t_target = 30
 index4 = (np.abs(t - t_target)).argmin()
-t_target = 25
+t_target = 40
 index5 = (np.abs(t - t_target)).argmin()
-t_target6 = 30
+t_target6 = 50
 index6 = (np.abs(t - t_target6)).argmin()
-
 
 # Dapatkan hasil keuntungan ketika t = n
 keuntungan_TS1 = X[index1]
@@ -79,11 +84,3 @@ print(f"{t[index3]:.0f}\t{keuntungan_TS3:.2f}\t\t{keuntungan_BPI3:.2f} ")
 print(f"{t[index4]:.0f}\t{keuntungan_TS4:.2f}\t\t{keuntungan_BPI4:.2f} ")
 print(f"{t[index5]:.0f}\t{keuntungan_TS5:.2f}\t\t{keuntungan_BPI5:.2f} ")
 print(f"{t[index6]:.0f}\t{keuntungan_TS6:.2f}\t\t{keuntungan_BPI6:.2f} ")
-
-# kasus nomor 3
-print(50*"=")
-t_target7 = 4
-index7 = (np.abs(t - t_target7)).argmin()
-keuntungan_BPI7= Y[index7]
-keuntungan_TS7 = X[index7]
-print(f"{t[index7]:.0f}\t{keuntungan_TS7:.2f}\t\t{keuntungan_BPI7:.2f} ")
