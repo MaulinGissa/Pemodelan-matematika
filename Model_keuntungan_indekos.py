@@ -11,7 +11,7 @@ alpha = 70  #juta # keuntungan maksimum indekos Tanjungsari
 beta = 102   #juta # keuntungan maksimum indekos BPI
 
 # Definisikan fungsi yang mendeskripsikan sistem ODE
-def lotka_volterra(y, t, r, a, s, b, alpha, beta):
+def indekos(y, t, r, a, s, b, alpha, beta):
     X, Y = y
     dydt = [r * X * (1 - (X/alpha)) - a * X * Y,
             s * Y * (1 - (Y/beta)) - b * Y * X]
@@ -24,7 +24,7 @@ y0 = [40, 70] #juta
 t = np.linspace(0, 50, 500)
 
 # Panggil odeint untuk menyelesaikan sistem ODE
-sol = odeint(lotka_volterra, y0, t, args=(r, a, s, b, alpha, beta))
+sol = odeint(indekos, y0, t, args=(r, a, s, b, alpha, beta))
 
 # Ekstrak solusi untuk X dan Y
 X = sol[:, 0]
